@@ -7,15 +7,22 @@ import CarrinhoSVG from "/public/images/Vector.svg";
 import Footer from "./components/footer";
 import Main from "./page";
 import CarrinhoDeCompra from "./components/carrinho";
+import { useState } from "react";
 
 export default function RootLayout({ children }) {
+  const [isCarrinhoOpen, setIsCarrinhoOpen] = useState(false);
+
+  const handleCarrinhoToggle = () => {
+    setIsCarrinhoOpen(!isCarrinhoOpen);
+  };
+
   return (
     <html lang="en">
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <body>
-        <CarrinhoDeCompra></CarrinhoDeCompra>
+      <Body>
+        <CarrinhoDeCompra isOpen={isCarrinhoOpen} onClose={handleCarrinhoToggle} />
         <Header>
           <LogoDiv>
             <LogoH1>
@@ -25,19 +32,26 @@ export default function RootLayout({ children }) {
               Sistemas
             </LogoP>
           </LogoDiv>
-          <ButtonCarrinho>
-            <Image src={CarrinhoSVG}/>
+          <ButtonCarrinho onClick={handleCarrinhoToggle}>
+            <Image src={CarrinhoSVG} alt="Carrinho de Compras" />
             <ContadorCarrinho>0</ContadorCarrinho>
           </ButtonCarrinho>
         </Header>
-        <Main>
+        <MainContainer>
           {children}
-        </Main>
+        </MainContainer>
         <Footer />
-      </body>
+      </Body>
     </html>
   );
 }
+
+const Body = styled.body `
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f9f9f9;
+`
 
 const Header = styled.header `
   display: flex;
@@ -47,6 +61,12 @@ const Header = styled.header `
   background-color: #0F52BA;
 `
 
+const MainContainer = styled.main `
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+`
 
 const LogoDiv = styled.div `
   display: flex;
@@ -81,6 +101,7 @@ const ButtonCarrinho = styled.div `
   border-radius: 0.5rem;
   background-color: white;
   border: none;
+  cursor: pointer;
 `
 
 const ContadorCarrinho = styled.p `

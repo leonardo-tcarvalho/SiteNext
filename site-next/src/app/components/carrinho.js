@@ -3,14 +3,19 @@
 import styled from "styled-components"
 import Image from "next/image"
 import FecharCarrinho from "/public/images/Close_cart.svg"
+import { useState } from "react"
 
-export default function CarrinhoDeCompra() {
+export default function CarrinhoDeCompra({ isOpen, onClose }) {
+  if (!isOpen) {
+    return null; // Retorna null quando o carrinho está fechado
+  }
+
   return (
     <CarrinhoNav>
       <CarrinhoHeader>
         <CarrinhoH1>Carrinho de Compras</CarrinhoH1>
-        <ContainerImg>
-          <Image src={FecharCarrinho} />
+        <ContainerImg onClick={onClose}>
+          <Image src={FecharCarrinho} alt="Fechar Carrinho" />
         </ContainerImg>
       </CarrinhoHeader>
       <ValorCompra>
@@ -55,8 +60,11 @@ const CarrinhoH1 = styled.h1 `
 `
 
 const ContainerImg = styled.div `
+  width: 1.4rem;
+  height: 1.4rem;
   margin-top: 2.8rem;
   margin-right: 2.1rem;
+  cursor: pointer;
 `
 
 const CaixaFinalizar = styled.div `
