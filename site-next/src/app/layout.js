@@ -6,6 +6,7 @@ import Image from "next/image";
 import CarrinhoSVG from "/public/images/Vector.svg";
 import Footer from "./components/footer";
 import Main from "./page";
+import CarrinhoDeCompra from "./components/carrinho";
 
 export default function RootLayout({ children }) {
   return (
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <body>
+        <CarrinhoDeCompra></CarrinhoDeCompra>
         <Header>
           <LogoDiv>
             <LogoH1>
@@ -31,7 +33,7 @@ export default function RootLayout({ children }) {
         <Main>
           {children}
         </Main>
-        <Footer></Footer>
+        <Footer />
       </body>
     </html>
   );
