@@ -5,7 +5,6 @@ import "./globals.css";
 import Image from "next/image";
 import CarrinhoSVG from "/public/images/Vector.svg";
 import Footer from "./components/footer";
-import Main from "./page";
 import CarrinhoDeCompra from "./components/carrinho";
 import { useState } from "react";
 

@@ -12,7 +12,7 @@ const ContainerFooter = styled.footer `
   justify-content: center;
   width: 100%;
   text-align: center;
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
   height: 1.1rem;
